@@ -11,7 +11,8 @@
 
 
 -- PSET:
-
+-- List the first 10 distinct last name sorted in descending order.
+SELECT DISTINCT last_name FROM employees ORDER BY last_name DESC LIMIT 10;
 
 -- Find all previous or current employees hired in the 90s and born on Christmas. 
 SELECT * FROM employees 
@@ -36,6 +37,6 @@ SELECT first_name,last_name FROM employees
 WHERE hire_date like '199_%'
 AND birth_date like '%-12-25'
 ORDER BY hire_date
-LIMIT 5 OFFSET 50;
+LIMIT 5 OFFSET 45;
 -- LIMIT and OFFSET can be used to create multiple pages of data. What is the relationship between OFFSET (number of results to skip), LIMIT (number of results per page), and the page number?
 

@@ -8,8 +8,15 @@ SHOW DATABASES;
 -- Find all employees with first names 'Irena', 'Vidya', or 'Maya', and order your results returned by first name. In your comments, answer: What was the first and last name in the first row of the results? What was the first and last name of the last person in the table?
 SELECT first_name,last_name 
 FROM employees
-ORDER BY first_name DESC;
--- Aamer Ferretti is first and Zvonko Mayerwieser is last
+WHERE first_name 
+IN 
+('Irena', 'Vidya','Maya')
+ORDER BY first_name DESC
+LIMIT 1;
+-- A'Irena','Reutenauer'
+-- 'Vidya','Awdeh'
+
+
 
 
 -- Find all employees with first names 'Irena', 'Vidya', or 'Maya', and order your results returned by first name and then last name. In your comments, answer: What was the first and last name in the first row of the results? What was the first and last name of the last person in the table?
@@ -42,8 +49,9 @@ ORDER BY emp_no DESC;
 
 -- Write a query to to find all employees whose last name starts and ends with 'E'. Sort the results by their hire date, so that the newest employees are listed first. Enter a comment with the number of employees returned, the name of the newest employee, and the name of the oldest employee.
 SELECT * FROM employees 
-WHERE last_name like 'E%'
-ORDER BY hire_date ;
+WHERE last_name like 'e%e'
+ORDER BY hire_date desc
+LIMIT 1;
 -- 7330 records 
 -- Phillip Eppinger (newest employee **)
 -- Cristinel Erdi (oldest employee **)
@@ -56,7 +64,8 @@ ORDER BY hire_date ;
 SELECT * FROM employees 
 WHERE birth_date like '%-12-25'
 and hire_date like '199_%'
-ORDER BY birth_date DESC, hire_date;
+ORDER BY birth_date DESC, hire_date
+LIMIT 1;
 -- 362 records
 -- Khun Bernini
 -- Douadi Pettis

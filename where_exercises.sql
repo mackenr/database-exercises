@@ -226,9 +226,7 @@ Find all current or previous employees whose last name starts or ends with 'E'. 
 
 
 SELECT last_name FROM employees
-WHERE last_name like '%E'
-AND 
-last_name like 'E%';
+WHERE last_name like '%E%';
 
 /*
 7.)
