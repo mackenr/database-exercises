@@ -2,7 +2,9 @@ SHOW DATABASES;
 USE albums_db;
 SHOW TABLES;
 DESCRIBE albums;
+SELECT  * FROM albums;
 SELECT DISTINCT artist FROM albums;
+
 SELECT release_date FROM albums;
 SELECT MIN(release_date) FROM albums;
 SELECT MAX(release_date) FROM albums;
@@ -34,7 +36,7 @@ Create a new file called select_exercises.sql. Store your code for this exercise
 Use the albums_db database.
 Explore the structure of the albums table.
 a. How many rows are in the albums table?
-There are 6 rows including the key
+There are 31
 
 b. How many unique artist names are in the albums table?
 23

@@ -15,9 +15,7 @@ DESCRIBE employees;
 USE departments;
 SHOW TABLES;
 DESCRIBE departments;
--- 9) What is the relationship between the employees and the departments tables? 
--- It looks like employees are listed at differnt levels in the heiarchy goint down. So there would be a total list of employess
--- as elements of the category company, yet departments acts a partition of the set of employees.
+-- 9)  At the current scale in this hierarchy, departments is the table which contains employees as a field
 USE dept_name;
 SHOW TABLES;
 USE employees;
