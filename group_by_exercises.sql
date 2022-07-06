@@ -35,6 +35,17 @@ GROUP BY hire_date
 ORDER BY COUNT(*) DESC
 LIMIT 10;
 
+SELECT last_name, count(*) AS n_same_last_name
+FROM employees
+GROUP BY last_name
+HAVING n_same_last_name < 150;
+
+SELECT concat(first_name, " ", last_name) AS full_name, count(*) AS n_same_full_name
+FROM employees
+GROUP BY full_name
+HAVING n_same_full_name >= 5;
+
+
 
 
 
@@ -58,8 +69,11 @@ LIMIT 10;
 
 -- Use the GROUP BY clause to create more complex queries
 -- Create a new file named group_by_exercises.sql
-
 -- In your script, use DISTINCT to find the unique titles in the titles table. How many unique titles have there ever been? Answer that in a comment in your SQL file.
+SHOW DATABASES;
+USE employees;
+SHOW TABLES;
+SELECT DISTINCT * FROM titles;
 
 -- Write a query to to find a list of all unique last names of all employees that start and end with 'E' using GROUP BY.
 
