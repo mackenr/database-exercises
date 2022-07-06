@@ -39,7 +39,7 @@ SELECT UPPER(CONCAT(first_name,' ', last_name )) as full_name
  FROM employees
 WHERE last_name like "e%e";
 -- Find all employees hired in the 90s and born on Christmas. Use datediff() function to find how many days they have been working at the company (Hint: You will also need to use NOW() or CURDATE()),
-SELECT DATEDIFF(hire_date,NOW()) as days_employed, first_name, last_name
+SELECT DATEDIFF(NOW(),hire_date) as days_employed, first_name, last_name
  FROM employees WHERE 
 hire_date like "199%"
 AND birth_date like "%12-25";
