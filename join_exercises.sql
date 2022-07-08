@@ -394,18 +394,39 @@ order by average_salary DESC;
 -- +--------------------+----------------+
 -- Bonus Find the names of all current employees, their department name, and their current manager's name.
 
-SELECT dept_no,dept_name
-FROM dept_emp de
+
+
+SELECT 
+CONCAT(sub2.first_name,' ',sub2.last_name) 'Employee name',sub2.dept_name 'Department Name',CONCAT(sub1.first_name,' ',sub1.last_name) 'Manager Name'
+
+FROM 
+(SELECT 
+e.first_name, e.last_name, dm.emp_no ,dpt.dept_no,dpt.dept_name
+
+FROM dept_manager dm 
 LEFT JOIN employees e
-USING (emp_no)
-LEFT JOIN departments d
-USING (dept_no)
-WHERE de.to_date>=now()
-
- GROUP BY dept_no,dept_name
- ORDER BY dept_no,dept_name
-;
-
+ON e.emp_no = dm.emp_no
+LEFT JOIN departments dpt
+ON dpt.dept_no = dm.dept_no
+LEFT JOIN dept_emp de
+ON dpt.dept_no = de.dept_no
+AND
+dm.emp_no = de.emp_no
+WHERE now() <= de.to_date
+and
+now() <= dm.to_date
+) sub1
+LEFT JOIN 
+(SELECT dept_no,emp_no,first_name,last_name,dept_name
+FROM
+employees b
+LEFT JOIN  dept_emp de
+using(emp_no)
+LEFT JOIN  departments dt
+using(dept_no)
+WHERE to_date>=now()) sub2
+ON sub2.dept_name=sub1.dept_name
+ORDER BY sub2.dept_name,CONCAT(sub2.first_name,' ',sub2.last_name);
 
 
 
@@ -424,3 +445,32 @@ WHERE de.to_date>=now()
 
 
 
+SELECT dept_name "Department: ", concat(last_name,',  ',first_name) "Name: ",concat('$',format(salary,2)) "Max Salary: " 
+ FROM(SELECT dept_no,MAX(salary) max_sal,dept_name
+FROM employees e
+Join dept_emp de
+using(emp_no)
+Join salaries s
+using(emp_no)
+Join departments d
+using(dept_no)
+where now()<=de.to_date
+and now()<=s.to_date
+group by dept_no
+order by dept_no 
+limit 14)sub1
+JOIN (SELECT dept_no,salary,dept_name,first_name,last_name
+FROM employees e
+Join dept_emp de
+using(emp_no)
+Join salaries s
+using(emp_no)
+Join departments d
+using(dept_no)
+where now()<=de.to_date
+and now()<=s.to_date
+
+)sub2
+USING(dept_no,dept_name)
+WHERE sub1.max_sal=sub2.salary
+ORDER BY salary desc;
