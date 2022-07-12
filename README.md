@@ -1,1 +1,2 @@
-This is CODE ups SQL stuff
+SQL module through Codeup
+
